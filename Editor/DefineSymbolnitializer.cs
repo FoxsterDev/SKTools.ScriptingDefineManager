@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using EditorUtility.SKhaScriptingDefineManager;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;

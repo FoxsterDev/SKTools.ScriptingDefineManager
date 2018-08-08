@@ -1,5 +1,4 @@
 ﻿using System;
-using NUnit.Framework;
 using UnityEditor;
 
 namespace SKTools.ScriptingDefineManager
@@ -8,8 +7,6 @@ namespace SKTools.ScriptingDefineManager
     {
         public bool Filter(object obj)
         {
-            Assert.IsAssignableFrom<BuildTargetGroup>(obj);
-
             var field = typeof(BuildTargetGroup).GetField(obj.ToString());
             return field.IsDefined(typeof(ObsoleteAttribute), false);
         }

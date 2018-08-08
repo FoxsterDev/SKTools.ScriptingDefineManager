@@ -7,17 +7,14 @@ namespace SKTools.ScriptingDefineManager
 {
     public static class Utilities
     {
-        private static string GetAbsolutePath(string assetPath)
+        public static string GetAssetDirectoryPathForPresets()
         {
-            return Path.Combine(Application.dataPath, assetPath.Replace("Assets/", ""));
+            var directoryPath = GetDirectoryPathForPresets();
+            var startIndex = Application.dataPath.Length - "Assets/".Length + 1;
+            return  directoryPath.Substring(startIndex);
         }
-
-        public static string GetAbsoluteDirectoryPathForPresets()
-        {
-            return GetAbsolutePath(GetDirectoryPathForPresets());
-        }
-
-        public static string GetDirectoryPathForPresets()
+        
+        private static string GetDirectoryPathForPresets()
         {
             var directoryPath = string.Concat(Constants.DirectoryPathInAssets, "Presets/");
             if (!Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
@@ -37,9 +34,7 @@ namespace SKTools.ScriptingDefineManager
 
         public static List<T> LoadAllAssetsAtPresetsFolder<T>(string searchPattern = "") where T : Object
         {
-            var absolutePathFolder = GetAbsoluteDirectoryPathForPresets();
-
-            var files = Directory.GetFiles(absolutePathFolder, searchPattern, SearchOption.AllDirectories);
+            var files = Directory.GetFiles(GetDirectoryPathForPresets(), searchPattern, SearchOption.AllDirectories);
             var list = new List<T>();
             var startIndex = Application.dataPath.Length - "Assets/".Length + 1;
 

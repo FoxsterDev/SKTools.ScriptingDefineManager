@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _active: 0
   _defines:
-  - name: IOS_D1
-    active: 1
+  - active: 1
     BuildTargetMask: 0
-  - name: IOS_D2
-    active: 1
+    name: IOS_D1
+  - active: 1
     BuildTargetMask: 0
+    name: IOS_D2
   _targetGroup: 4

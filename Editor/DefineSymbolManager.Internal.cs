@@ -54,7 +54,7 @@ namespace SKTools.ScriptingDefineManager
 
         internal static string GetAssetPath(string assetId)
         {
-            var directoryPath = Utilities.GetDirectoryPathForPresets();
+            var directoryPath = Utilities.GetAssetDirectoryPathForPresets();
             return string.Concat(directoryPath, assetId, ".asset");
         }
 

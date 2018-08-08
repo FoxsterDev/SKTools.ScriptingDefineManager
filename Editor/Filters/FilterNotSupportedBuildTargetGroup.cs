@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using NUnit.Framework;
 using UnityEditor;
+
 
 namespace SKTools.ScriptingDefineManager
 {
@@ -9,8 +9,6 @@ namespace SKTools.ScriptingDefineManager
     {
         public bool Filter(object obj)
         {
-            Assert.IsAssignableFrom<BuildTargetGroup>(obj);
-
             var group = (BuildTargetGroup) obj;
             if (group == BuildTargetGroup.Standalone)
                 return true;
