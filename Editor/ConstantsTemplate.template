@@ -1,0 +1,9 @@
+﻿namespace SKTools.ScriptingDefineManager
+{
+    public class Constants
+    {
+        public const string DirectoryPathInAssets = "{0}";
+    }
+}
+
+
