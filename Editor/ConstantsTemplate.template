@@ -2,7 +2,9 @@
 {
     public class Constants
     {
-        public const string DirectoryPathInAssets = "{0}";
+        public static string DirectoryPathInAssets = "{0}";
+        public static string AssetDirectoryPathForPresets = "{1}";
+        public static string AbsoluteDirectoryPathForPresets = @"{2}";
     }
 }
 

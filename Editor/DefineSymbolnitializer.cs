@@ -11,28 +11,42 @@ namespace SKTools.ScriptingDefineManager
     {
         static DefineSymbolnitializer()
         {
-            CheckConstants();
+            UpdateConstants();
             SyncWithPlayerSettings();
         }
 
-        private static void CheckConstants()
+        private static void UpdateConstants()
         {
             if (string.IsNullOrEmpty(Constants.DirectoryPathInAssets) ||
-                !Directory.Exists(Path.Combine(Application.dataPath,
-                    Constants.DirectoryPathInAssets.Replace("Assets/", ""))))
+                !Directory.Exists(Constants.DirectoryPathInAssets))
             {
                 Debug.Log("Update constants!");
 
                 var stackTrace = new StackTrace(true);
                 var directoryPath = stackTrace.GetFrames()[0].GetFileName()
                     .Replace(string.Format("{0}.cs", typeof(DefineSymbolnitializer).Name), "");
-                var directoryPathInAssets =
-                    directoryPath.Replace(Application.dataPath, "Assets").Replace(@"\", "/");
-                var constants = File.ReadAllText(directoryPath + "ConstantsTemplate.template")
-                    .Replace("{0}", directoryPathInAssets);
+
+                Debug.Log(directoryPath);
+                Constants.DirectoryPathInAssets = AssetUtil.GetAssetPath(directoryPath);
+                Constants.AssetDirectoryPathForPresets = string.Concat(Constants.DirectoryPathInAssets, "Presets/");
+                Constants.AbsoluteDirectoryPathForPresets = AssetUtil.GetAbsolutePath(Constants.AssetDirectoryPathForPresets);
+
+                if (!Directory.Exists(Constants.AbsoluteDirectoryPathForPresets))
+                {
+                    Directory.CreateDirectory(Constants.AbsoluteDirectoryPathForPresets);
+                }
+                
+                var template = File.ReadAllText(directoryPath + "ConstantsTemplate.template");
+                var constants = template
+                    .Replace("{0}", Constants.DirectoryPathInAssets);
+                constants = constants
+                    .Replace("{1}", Constants.AssetDirectoryPathForPresets);
+                constants = constants
+                    .Replace("{2}", Constants.AbsoluteDirectoryPathForPresets);
+
+                Debug.Log("Constants was updated");
 
                 File.WriteAllText(directoryPath + "Constants.cs", constants);
-                Debug.Log("Constants was updated");
                 AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
             }
         }

@@ -54,8 +54,7 @@ namespace SKTools.ScriptingDefineManager
 
         internal static string GetAssetPath(string assetId)
         {
-            var directoryPath = Utilities.GetAssetDirectoryPathForPresets();
-            return string.Concat(directoryPath, assetId, ".asset");
+            return string.Concat(Constants.AssetDirectoryPathForPresets, assetId, ".asset");
         }
 
         internal static IGroup GetAsset(string id)
@@ -69,7 +68,7 @@ namespace SKTools.ScriptingDefineManager
             var assetPath = GetAssetPath(group.Id);
             var assetNew = (ScriptableObject) group.Clone();
 
-            Utilities.RefreshAssetAtPath(assetNew, assetPath);
+            AssetUtil.RefreshAssetAtPath(assetNew, assetPath);
         }
 
         internal static void Apply(List<WithBuildTargetGroupType> list)
@@ -108,7 +107,7 @@ namespace SKTools.ScriptingDefineManager
 
         private static List<T> LoadAllPresetsAtFolder<T>() where T : ScriptableObject, IGroup
         {
-            var assets = Utilities.LoadAllAssetsAtPresetsFolder<T>("*.asset");
+            var assets = AssetUtil.LoadAllAssetsAtPresetsFolder<T>("*.asset");
 
             var list = new List<T>();
             foreach (var asset in assets) list.Add((T) asset.Clone());
