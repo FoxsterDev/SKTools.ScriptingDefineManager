@@ -5,7 +5,8 @@ namespace SKTools.ScriptingDefineManager.Groups
 {
     public class CustomNameGUI : GroupGUI
     {
-        public CustomNameGUI(WithCustomName actual) : base(actual)
+        public CustomNameGUI(WithCustomName actual)
+            : base(actual)
         {
         }
 

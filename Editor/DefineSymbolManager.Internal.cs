@@ -10,6 +10,10 @@ namespace SKTools.ScriptingDefineManager
 {
     public static partial class DefineSymbolManager
     {
+        public static bool HasBuildTarget(CustomBuildTarget mask, CustomBuildTarget target)
+        {
+            return (mask & target) == target;
+        }
         //*************************************
 
         internal static void Apply(IGroup group)
@@ -27,11 +31,6 @@ namespace SKTools.ScriptingDefineManager
                  *  
                  */
             }
-        }
-
-        public static bool HasBuildTarget(CustomBuildTarget mask, CustomBuildTarget target)
-        {
-            return (mask & target) == target;
         }
 
         private static void SetScriptingDefineSymbolsForGroup(WithBuildTargetGroupType group, string[] defines)
@@ -96,7 +95,9 @@ namespace SKTools.ScriptingDefineManager
                 var definesForGroup = GetScriptingDefineSymbolsForGroup(targetGroup);
                 var defines = definesForGroup.Select(s => new DefineSymbol(s)).ToList();
                 if (defines.Count < 1)
+                {
                     continue;
+                }
 
                 var group = WithBuildTargetGroupType.Create(targetGroup, defines);
                 list.Add(group);
@@ -110,7 +111,10 @@ namespace SKTools.ScriptingDefineManager
             var assets = AssetUtil.LoadAllAssetsAtPresetsFolder<T>("*.asset");
 
             var list = new List<T>();
-            foreach (var asset in assets) list.Add((T) asset.Clone());
+            foreach (var asset in assets)
+            {
+                list.Add((T) asset.Clone());
+            }
 
             return list;
         }

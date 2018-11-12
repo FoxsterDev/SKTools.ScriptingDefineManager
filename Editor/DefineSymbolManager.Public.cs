@@ -51,7 +51,10 @@ namespace SKTools.ScriptingDefineManager
             var definesCurrent = GetScriptingDefineSymbolsForGroup(targetGroup);
 
             var definesNew = definesCurrent.Except(defines).ToArray();
-            if (definesNew.Length < definesCurrent.Length) SetScriptingDefineSymbolsForGroup(targetGroup, definesNew);
+            if (definesNew.Length < definesCurrent.Length)
+            {
+                SetScriptingDefineSymbolsForGroup(targetGroup, definesNew);
+            }
         }
 
         public static IGroup GetGroup(string yourGroupName)
@@ -79,7 +82,9 @@ namespace SKTools.ScriptingDefineManager
         {
             var definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup);
             if (string.IsNullOrEmpty(definesString))
+            {
                 return new string[0];
+            }
 
             return definesString.Split(';').ToArray();
         }

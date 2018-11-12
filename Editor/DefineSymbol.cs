@@ -6,12 +6,14 @@ namespace SKTools.ScriptingDefineManager
     [Serializable]
     public class DefineSymbol
     {
-        [FormerlySerializedAs("active")] public bool active = true;
+        [FormerlySerializedAs("active")]
+        public bool active = true;
 
         [FormerlySerializedAs("buildtargetmask") /*, HideInInspector*/]
         public CustomBuildTarget BuildTargetMask = CustomBuildTarget.Unknown;
 
-        [FormerlySerializedAs("name")] public string name;
+        [FormerlySerializedAs("name")]
+        public string name;
 
         public DefineSymbol(DefineSymbol s)
         {
@@ -29,16 +31,25 @@ namespace SKTools.ScriptingDefineManager
         {
         }
 
-
         public override int GetHashCode()
         {
-            return !string.IsNullOrEmpty(name) ? name.GetHashCode() : 0;
+            return !string.IsNullOrEmpty(name)
+                       ? name.GetHashCode()
+                       : 0;
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(this, obj)) return true;
-            if (!(obj is DefineSymbol)) return false;
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (!(obj is DefineSymbol))
+            {
+                return false;
+            }
+
             return obj != null && name.Equals(((DefineSymbol) obj).name);
         }
 

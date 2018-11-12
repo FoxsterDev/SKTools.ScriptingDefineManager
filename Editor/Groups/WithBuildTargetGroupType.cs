@@ -9,7 +9,8 @@ namespace SKTools.ScriptingDefineManager.Groups
     [Serializable]
     public class WithBuildTargetGroupType : Group<WithBuildTargetGroupType>
     {
-        [FormerlySerializedAs("targetgroup")] [SerializeField]
+        [FormerlySerializedAs("targetgroup")]
+        [SerializeField]
         private BuildTargetGroup _targetGroup;
 
         public BuildTargetGroup TargetGroup
@@ -22,18 +23,18 @@ namespace SKTools.ScriptingDefineManager.Groups
             get { return _targetGroup.ToString(); }
         }
 
-        public static WithBuildTargetGroupType Create(BuildTargetGroup targetGroup, List<DefineSymbol> list)
-        {
-            var instance = CreateInstance(list);
-            instance._targetGroup = targetGroup;
-            return instance;
-        }
-
         public override IGroup Clone()
         {
             var clone = (WithBuildTargetGroupType) base.Clone();
             clone._targetGroup = _targetGroup;
             return clone;
+        }
+
+        public static WithBuildTargetGroupType Create(BuildTargetGroup targetGroup, List<DefineSymbol> list)
+        {
+            var instance = CreateInstance(list);
+            instance._targetGroup = targetGroup;
+            return instance;
         }
     }
 }

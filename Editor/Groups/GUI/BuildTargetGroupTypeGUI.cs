@@ -2,7 +2,8 @@
 {
     public class BuildTargetGroupTypeGUI : GroupGUI
     {
-        public BuildTargetGroupTypeGUI(WithBuildTargetGroupType actual) : base(actual)
+        public BuildTargetGroupTypeGUI(WithBuildTargetGroupType actual)
+            : base(actual)
         {
         }
     }

@@ -8,15 +8,6 @@ namespace SKTools.ScriptingDefineManager
 {
     public class DefineSymbolEditor : EditorWindow
     {
-        [Flags]
-        public enum PlatformFilterType
-        {
-            // Decimal     // Binary
-            None = 0, // 000000
-            Obsolete = 1, // 000001
-            Unsupported = 2 // 000010
-        }
-
         private static readonly Dictionary<Type, Func<IGroup, IGroupGUI>> CreatorGroupGUI =
             new Dictionary<Type, Func<IGroup, IGroupGUI>>
             {
@@ -36,6 +27,15 @@ namespace SKTools.ScriptingDefineManager
 
         private PlatformFilterType _platformFilterType = PlatformFilterType.Obsolete | PlatformFilterType.Unsupported;
 
+        [Flags]
+        public enum PlatformFilterType
+        {
+            // Decimal     // Binary
+            None = 0, // 000000
+            Obsolete = 1, // 000001
+            Unsupported = 2 // 000010
+        }
+
         [MenuItem("Window/DefineSymbolEditor Window")]
         private static void Init()
         {
@@ -50,22 +50,27 @@ namespace SKTools.ScriptingDefineManager
             if (GUI.Button(new Rect(0, 0, 100, y), "Categories"))
             {
                 var menu = new GenericMenu();
-                menu.AddItem(new GUIContent("Profiles"), _groupBuildTargetFilter == "Profiles",
+                menu.AddItem(
+                    new GUIContent("Profiles"), _groupBuildTargetFilter == "Profiles",
                     obj => { _groupBuildTargetFilter = obj as string; },
                     "Profiles");
-                menu.AddItem(new GUIContent("Platform/All"), _groupBuildTargetFilter == "Platforms_All",
+                menu.AddItem(
+                    new GUIContent("Platform/All"), _groupBuildTargetFilter == "Platforms_All",
                     obj => { _groupBuildTargetFilter = obj as string; },
                     "Platforms_All");
 
-                menu.AddItem(new GUIContent("Platform/All/Filter/None"),
+                menu.AddItem(
+                    new GUIContent("Platform/All/Filter/None"),
                     _platformFilterType == PlatformFilterType.None,
                     obj => { _platformFilterType = (PlatformFilterType) obj; },
                     PlatformFilterType.None);
-                menu.AddItem(new GUIContent("Platform/All/Filter/Obsolete"),
+                menu.AddItem(
+                    new GUIContent("Platform/All/Filter/Obsolete"),
                     (_platformFilterType & PlatformFilterType.Obsolete) != 0,
                     obj => { _platformFilterType |= (PlatformFilterType) obj; },
                     PlatformFilterType.Obsolete);
-                menu.AddItem(new GUIContent("Platform/All/Filter/Unsupported"),
+                menu.AddItem(
+                    new GUIContent("Platform/All/Filter/Unsupported"),
                     (_platformFilterType & PlatformFilterType.Unsupported) != 0,
                     obj => { _platformFilterType |= (PlatformFilterType) obj; },
                     PlatformFilterType.Unsupported);
@@ -74,7 +79,10 @@ namespace SKTools.ScriptingDefineManager
 
             EditorGUILayout.EndHorizontal();
 
-            foreach (var gui in _groupsGui) gui.Draw(ref y, position.width);
+            foreach (var gui in _groupsGui)
+            {
+                gui.Draw(ref y, position.width);
+            }
         }
 
         private void CreateAndAddDrawerToList(IGroup group)

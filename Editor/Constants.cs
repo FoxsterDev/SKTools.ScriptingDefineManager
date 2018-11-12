@@ -7,5 +7,3 @@ namespace SKTools.ScriptingDefineManager
         public static string AbsoluteDirectoryPathForPresets;
     }
 }
-
-

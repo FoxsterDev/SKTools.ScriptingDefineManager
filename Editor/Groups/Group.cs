@@ -10,10 +10,12 @@ namespace SKTools.ScriptingDefineManager.Groups
     [Serializable]
     public abstract class Group<T> : ScriptableObject, IGroup where T : ScriptableObject //
     {
-        [FormerlySerializedAs("active")] [SerializeField]
+        [FormerlySerializedAs("active")]
+        [SerializeField]
         private bool _active;
 
-        [FormerlySerializedAs("defines")] [SerializeField]
+        [FormerlySerializedAs("defines")]
+        [SerializeField]
         private List<DefineSymbol> _defines;
 
         public abstract string Id { get; }
@@ -36,15 +38,6 @@ namespace SKTools.ScriptingDefineManager.Groups
             return group;
         }
 
-        protected static T CreateInstance(List<DefineSymbol> list)
-        {
-            var instance = (Group<T>) CreateInstance(typeof(T));
-            instance._defines =
-                list != null ? list.Select(i => new DefineSymbol(i)).ToList() : new List<DefineSymbol>();
-            instance._active = false;
-            return (T) (object) instance;
-        }
-
         public override int GetHashCode()
         {
             var hash = Id.GetHashCode();
@@ -60,6 +53,17 @@ namespace SKTools.ScriptingDefineManager.Groups
         public override string ToString()
         {
             return string.Concat(GetType().Name, ": ", Id);
+        }
+
+        protected static T CreateInstance(List<DefineSymbol> list)
+        {
+            var instance = (Group<T>) CreateInstance(typeof(T));
+            instance._defines =
+                list != null
+                    ? list.Select(i => new DefineSymbol(i)).ToList()
+                    : new List<DefineSymbol>();
+            instance._active = false;
+            return (T) (object) instance;
         }
     }
 }
