@@ -70,7 +70,7 @@ namespace SKTools.ScriptingDefineManager
         private static void SetScriptingDefineSymbolsForGroup(BuildTargetGroup targetGroup, string[] defines)
         {
             var definesStr = string.Join(";", defines);
-            Debug.Log(definesStr);
+//            Debug.Log(definesStr);
             PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, definesStr);
         }
 
