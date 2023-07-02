@@ -51,8 +51,6 @@ namespace SKTools.ScriptingDefineManager
 
         private static void SyncWithPlayerSettings()
         {
-            UnityEngine.Debug.Log("SyncWithPlayerSettings");
-
             var playerSettingsGroups = DefineSymbolManager.GetAllGroupsByBuildTargetGroupFromPlayerSettings();
             var savedGroups = DefineSymbolManager.GetAllGroupsByBuildTargetGroup(); //load all cashed presets
             //может нужен какой мерж групп..
