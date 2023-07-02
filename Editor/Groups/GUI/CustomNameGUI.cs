@@ -19,7 +19,7 @@ namespace SKTools.ScriptingDefineManager.Groups
             var element = (DefineSymbol) _edited.list[index];
 
             element.BuildTargetMask =
-                (CustomBuildTarget) EditorGUI.EnumMaskField(
+                (CustomBuildTarget) EditorGUI.EnumFlagsField(
                     new Rect(rect.x, rect.y, 200, EditorGUIUtility.singleLineHeight),
                     element.BuildTargetMask);
         }

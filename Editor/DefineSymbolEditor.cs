@@ -36,7 +36,7 @@ namespace SKTools.ScriptingDefineManager
             Unsupported = 2 // 000010
         }
 
-        [MenuItem("Window/DefineSymbolEditor Window")]
+        [MenuItem("SKTools/DefineSymbolEditor Window")]
         private static void Init()
         {
             var window = (DefineSymbolEditor) GetWindow(typeof(DefineSymbolEditor));

@@ -1,0 +1,15 @@
+{
+  "name": "com.foxsterdev.sktools.scriptingdefinemanager",
+  "displayName": "SKTools.ScriptingDefineManager",
+  "version": "0.0.2",
+  "unity": "2020.3",
+  "description": "Allow you operate with define symbols in the project",
+  "keywords": ["Defines", "Scripting Define", "Player Scripting Define Symbols"],
+  "license": "MIT",
+  "documentationUrl": "https://github.com/FoxsterDev/SKTools.ScriptingDefineManager",
+  "changelogUrl": "https://github.com/FoxsterDev/SKTools.ScriptingDefineManager/releases",
+  "licensesUrl": "https://github.com/FoxsterDev/SKTools.ScriptingDefineManager/blob/main/LICENSE",
+  "dependencies": {
+    
+  }
+}
